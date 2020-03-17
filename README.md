@@ -6,10 +6,8 @@ Install
 -------
 Install from [npm](http://npmjs.org)
 ```
+cd $HOME/.node-red/
 npm install node-red-contrib-sap-hana
-npm install -g @sap/hana-client
-cd $HOME/.node-red/node-modules
-npm link @sap/hana-client
 ```
 
 Edit `/etc/hosts` for default hxehost replacing X.Y or whole IP address
@@ -45,6 +43,14 @@ To run a command  or a query input to saphana node the folowing message :
 msg.topic = "SQL"; // or lower case 'sql'
 msg.payload = "SELECT * FROM DUMMY";
 return msg;
+```
+
+As an OK response you'll receive on the `saphana` node (or error):
+```
+{
+	topic : "RESULT_IN_LAYLOAD",
+	payload : [{"DUMMY":"X"}];
+}
 ```
 
 Currently, only SAP HANA Express has been tested.

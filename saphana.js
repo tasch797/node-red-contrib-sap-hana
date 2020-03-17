@@ -35,8 +35,8 @@ module.exports = function(RED) {
 		
 		node.on("input", function(msg, send, done) {
 			
-			node.warn("Topic : " + msg.topic);
-			node.warn("Payload : " + msg.payload);
+			//node.info("Topic : " + msg.topic);
+			//node.info("Payload : " + msg.payload);
 			
 			if (msg.topic === 'SQL' || msg.topic === 'sql' ){
 				
@@ -49,46 +49,67 @@ module.exports = function(RED) {
 					password : node.hanaConfig.password
 				};
 				
-				node.warn("Connection Params : " + JSON.stringify(node.conn_params));
+				//node.warn("Connection Params : " + JSON.stringify(node.conn_params));
 				
 				conn.connect(node.conn_params, function(err, result) {
 					
 					node.connection = conn;
 					
 					if(err) {
-						node.warn(err);
-						
-						node.connected = false;
-						
+						node.warn(JSON.stringify(err));
 						node.warn("Connection failed for host " + node.hanaConfig.host + " with user " + node.hanaConfig.user);
+						
+						var outErr = {
+							topic : 'ERROR',
+							payload : JSON.parse(JSON.stringify(err))
+						};
+								
+						send(outErr);								
+						done();						
 					}
 					else
 					{
 						conn.exec(msg.payload, [], function (err2, result2) {
 							
 							if (err2) {
-								node.warn(err2);
+								node.warn(JSON.stringify(err2));
+								
+								var outErr2 = {
+									topic : 'ERROR',
+									payload : JSON.parse(JSON.stringify(err2))
+								};
+										
+								send(outErr2);								
+								done();
 							}
 							
-							node.connected = true;
+							//node.warn(JSON.stringify(result2));
 							
-							send(result2);
+							conn.disconnect();
+							
+							var out = {
+								topic : 'RESULT_IN_PAYLOAD',
+								payload : JSON.parse(JSON.stringify(result2))
+							};
+								
+							send(out);
+							
 							done();
-							
-							conn.disconnect();								
 						});
 					}
 
-					send({});
+					send(null);
 					done();
 				});
 		
 			}
-			else {
-				if (typeof msg.topic !== 'string') { 
-					node.error("msg.topic : the query is not defined as a string"); 
-				}
+			else
+			{
+				node.error("msg.topic != 'SQL' and  msg.topic != 'sql' ");
 			}
+			
+			send(null);
+			done();			
 		});
     }
 	
