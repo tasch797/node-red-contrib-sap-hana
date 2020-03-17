@@ -1,0 +1,72 @@
+<script type="text/x-red" data-template-name="saphanaconfig">
+    <div class="form-row">
+        <label for="node-config-input-host"><i class="fa fa-globe"></i> Host</label>
+        <input type="text" id="node-config-input-host" placeholder="Database Server Name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-port"><i class="fa fa-globe"></i> Port</label>
+        <input type="text" id="node-config-input-port" placeholder="Database Server Port">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-user"><i class="fa fa-user"></i> User</label>
+        <input type="text" id="node-config-input-user" placeholder="Username">
+    </div>
+        <div class="form-row">
+        <label for="node-config-input-password"><i class="fa fa-lock"></i> Password</label>
+        <input type="password" id="node-config-input-password" placeholder="Password">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-db"><i class="fa fa-database"></i> Schema</label>
+        <input type="text" id="node-config-input-db" placeholder="Schema Name">
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('saphanaconfig',{
+        category: 'config',
+        defaults: {
+            host: {value:"hxehost",required:true},
+            port: {value:"39015", required:true},
+            db: {value:"",required:true},
+			user: {value:"",required:true},
+            password: {value:"",required:true}			
+        },
+        label: function() {
+            if (this.name)
+                return this.name;
+            else if (this.db)
+                return this.db;
+            else
+                return "saphana";
+        }
+    });
+</script>
+<script type="text/x-red" data-template-name="saphana">
+    <div class="form-row">
+        <label for="node-input-mydb"><i class="fa fa-database"></i> Database</label>
+        <input type="text" id="node-input-mydb">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('saphana',{
+        category: 'storage-input',
+        color:"#e97b00",
+        defaults: {
+            mydb: {type:"saphanaconfig", required:true},
+            name: {value:"saphana1", required:true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "db.png",
+        label: function() {
+            var levelNode = RED.nodes.node(this.mydb);
+            return this.name||(levelNode?levelNode.label():"saphana");
+        },
+            labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>

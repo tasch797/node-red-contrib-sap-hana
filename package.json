@@ -1,0 +1,32 @@
+{
+  "name": "node-red-contrib-sap-hana",
+  "version": "0.0.1",
+  "description": "Node-RED node to access SAP HANA database",
+  "dependencies": {
+    "@sap/hana-client": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/radu103/node-red-contrib-sap-hana.git"
+  },
+  "license": "Apache",
+  "keywords": [
+    "node-red",
+    "sap",
+    "sap-hana",
+    "hana"
+  ],
+  "node-red": {
+    "nodes": {
+      "saphana": "saphana.js"
+    }
+  },
+  "author": {
+    "name": "Radu Simen"
+  },
+  "contributors": [
+    {
+      "name": "Radu Simen"
+    }
+  ]
+}
