@@ -1,0 +1,84 @@
+[
+    {
+        "id": "b7f0e398.d0634",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "2660addc.ccd872",
+        "type": "saphanaconfig",
+        "z": "",
+        "host": "hxehost",
+        "port": "39015",
+        "db": "79288539EE8D4F1B801B85F8CCF11303",
+        "user": "79288539EE8D4F1B801B85F8CCF11303_CVCUMHX4NP468RH0HGHS7L1LR_RT",
+        "password": "Lv0UM0k3RZQVsb7X0xJJRDG1fQYTaz2KX_7Tuyvx1_5muQC313SzmzQUFGjQc.Jv3_nEXHjBV7Jw7AEZR-TX5YefUOU.rHpukWdO6tJYkXi0ZlieGcoHPoLN8o4VO8V2"
+    },
+    {
+        "id": "cd4b5739.625608",
+        "type": "inject",
+        "z": "b7f0e398.d0634",
+        "name": "",
+        "topic": "SQL",
+        "payload": "SELECT * FROM DUMMY",
+        "payloadType": "str",
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 260,
+        "y": 660,
+        "wires": [
+            [
+                "5e2400fc.38b06",
+                "341a0409.2dcf1c"
+            ]
+        ]
+    },
+    {
+        "id": "5e2400fc.38b06",
+        "type": "debug",
+        "z": "b7f0e398.d0634",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 610,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "91c42978.205888",
+        "type": "debug",
+        "z": "b7f0e398.d0634",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 770,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "341a0409.2dcf1c",
+        "type": "saphana",
+        "z": "b7f0e398.d0634",
+        "mydb": "2660addc.ccd872",
+        "name": "saphana1",
+        "x": 540,
+        "y": 660,
+        "wires": [
+            [
+                "91c42978.205888"
+            ]
+        ]
+    }
+]

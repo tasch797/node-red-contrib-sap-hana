@@ -4,13 +4,14 @@ node-red-contrib-sap-hana
 
 Install
 -------
-Install from [npm](http://npmjs.org)
+Install from [npm](http://npmjs.org) or install from Magane Pallet in Node-RED
 ```
 cd $HOME/.node-red/
 npm install node-red-contrib-sap-hana
 ```
 
-Edit `/etc/hosts` for default hxehost replacing X.Y or whole IP address
+
+Do not forget to edit `/etc/hosts` for default hxehost replacing X.Y or whole IP address if you're using hxehost as hostname
 ```
 192.168.X.Y hxehost
 ```
@@ -19,6 +20,7 @@ Usage
 -----
 This package contains one node to run a sql command, call a procedure or a select statement for SAP HANA database using the office @sap/hana-client Node.JS driver.
 
+Example flow here [flows.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/flows.json)
 
 Query node usage:
 -----------------
