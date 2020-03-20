@@ -3,6 +3,7 @@ module.exports = function(RED) {
 	"use strict";
     
     var hanaClient = require('@sap/hana-client');
+	var async = require('async');
 	
 	function configNode(n) {
         
@@ -20,7 +21,7 @@ module.exports = function(RED) {
     }
 	
     RED.nodes.registerType("saphanaconfig", configNode);
-	
+
     function sqlQueryIn(n) {
 		
 		//console.dir(n);
@@ -36,9 +37,13 @@ module.exports = function(RED) {
 		node.on("input", function(msg, send, done) {
 			
 			node.warn("Topic : " + msg.topic);
-			node.warn("Payload : " + msg.payload);
+			node.warn("Payload : " + JSON.stringify(msg.payload));
 			
 			if (msg.topic === 'SQL' || msg.topic === 'sql' ){
+				
+				if(typeof msg.payload === 'string' || msg.payload instanceof String){
+					msg.payload = [ msg.payload ];
+				}
 				
 				var conn = hanaClient.createConnection();
 			
@@ -58,48 +63,60 @@ module.exports = function(RED) {
 					if(err) {
 						node.warn(err);
 						
-						node.warn("Connection failed for host " + node.hanaConfig.host + " with user " + node.hanaConfig.user);
+						var errMess = "Connection failed for host " + node.hanaConfig.host + " with user " + node.hanaConfig.user;
+						node.warn(errMess);
 						
-						var outErr = {
-							topic : "ERROR",
-							payload : JSON.parse(JSON.stringify(err2))
-						}
+						var errMsg = {
+							"topic" : "ERROR",
+							"payload" : err
+						};
 						
-						send(outErr);
-						done();							
+						send(errMsg);
+						done();
 					}
 					else
 					{
-						conn.exec(msg.payload, [], function (err2, result2) {
+						var fnExec = [];
+						
+						for(var i = 0; i < msg.payload.length; i++){
 							
-							if (err2) {
-								node.warn(err2);
+							let sql = msg.payload[i];
+							node.warn("SQL loop : " + sql);
+							
+							var fn = function(callback){
+								conn.exec(sql, [], function (err2, result2) {
+									
+									if (err2) {
+										node.warn(err2);
+										callback(null, err2);
+									}
+									else{
+										callback(null, result2);
+									}
+								});
+							};
+							
+							fnExec.push(fn);
+						}
+						
+						async.series(
+							fnExec,
+							function(err, results) {
 								
-								var outErr2 = {
-									topic : "ERROR",
-									payload : JSON.parse(JSON.stringify(err2))
+								node.warn("Async results : " + JSON.stringify(results) );
+								
+								var msg = {
+									"topic" : "RESULTS_IN_PAYLOAD",
+									"payload" : results
 								}
 								
-								send(outErr2);
-								done();								
+								send(msg);
+								done();
+								
+								conn.disconnect();								
 							}
-							
-							node.connected = true;
-							
-							var out = {
-								topic : "RESULT_IN_PAYLOAD",
-								payload : JSON.parse(JSON.stringify(result2))
-							}
-							
-							send(out);
-							done();
-							
-							conn.disconnect();								
-						});
+						);
 					}
-
-					send({});
-					done();
 				});
 		
 			}

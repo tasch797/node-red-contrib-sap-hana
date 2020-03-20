@@ -2,6 +2,13 @@ node-red-contrib-sap-hana
 =========================
 [Node-RED](http://nodered.org) nodes to work with a SAP HANA database
 
+Change Log
+-------
+
+v1.0.2 - Feature added : Insert in message payload and Array of sql script commands (Example flows updated also)
+
+v1.0.1 - INSERT, UPDATE, DELETE and ither SQL script sql commands work
+
 Install
 -------
 Install from [npm](http://npmjs.org) or install from Magane Pallet in Node-RED
