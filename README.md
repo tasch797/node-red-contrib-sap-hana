@@ -11,7 +11,7 @@ v1.0.1 - INSERT, UPDATE, DELETE and other SQL script sql commands work
 
 Install
 -------
-Install from [npm](http://npmjs.org) or install from Magane Pallet in Node-RED
+Install from [npm](http://npmjs.org) or install from Manage Pallete in Node-RED
 ```
 cd $HOME/.node-red/
 npm install node-red-contrib-sap-hana
