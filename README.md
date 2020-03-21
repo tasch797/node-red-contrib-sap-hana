@@ -5,6 +5,8 @@ node-red-contrib-sap-hana
 Change Log
 -------
 
+v1.0.4 - Readme fix
+
 v1.0.2 - Feature added : Insert in msg.payload an Array of sql script commands (Example flows updated also)
 
 v1.0.1 - INSERT, UPDATE, DELETE and other SQL script sql commands work
@@ -57,7 +59,7 @@ return msg;
 As an OK response you'll receive on the `saphana` node (or error):
 ```
 {
-	topic : "RESULT_IN_LAYLOAD",
+	topic : "RESULT_IN_PAYLOAD",
 	payload : [{"DUMMY":"X"}];
 }
 ```
