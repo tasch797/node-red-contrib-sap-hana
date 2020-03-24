@@ -1,1 +1,219 @@
-[{"id":"b7f0e398.d0634","type":"tab","label":"Flow 1","disabled":false,"info":""},{"id":"d8a496b4.054658","type":"tab","label":"Flow 2","disabled":false,"info":""},{"id":"2660addc.ccd872","type":"saphanaconfig","z":"","host":"hxehost","port":"39015","db":"79288539EE8D4F1B801B85F8CCF11303","user":"79288539EE8D4F1B801B85F8CCF11303_CVCUMHX4NP468RH0HGHS7L1LR_RT","password":"Lv0UM0k3RZQVsb7X0xJJRDG1fQYTaz2KX_7Tuyvx1_5muQC313SzmzQUFGjQc.Jv3_nEXHjBV7Jw7AEZR-TX5YefUOU.rHpukWdO6tJYkXi0ZlieGcoHPoLN8o4VO8V2"},{"id":"cd4b5739.625608","type":"inject","z":"b7f0e398.d0634","name":"","topic":"SQL","payload":"[\"SELECT * FROM \\\"test\\\"\",\"TRUNCATE TABLE \\\"test\\\"\"]","payloadType":"json","repeat":"10","crontab":"","once":true,"onceDelay":0.1,"x":170,"y":660,"wires":[["341a0409.2dcf1c"]]},{"id":"91c42978.205888","type":"debug","z":"b7f0e398.d0634","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","targetType":"full","x":750,"y":640,"wires":[]},{"id":"341a0409.2dcf1c","type":"saphana","z":"b7f0e398.d0634","mydb":"2660addc.ccd872","name":"saphana1","x":540,"y":660,"wires":[["91c42978.205888"]]},{"id":"3bda078c.e41ab8","type":"inject","z":"d8a496b4.054658","name":"","topic":"SQL","payload":"[\"CREATE TABLE \\\"test\\\" (\\\"index\\\" INTEGER)\",\"INSERT INTO \\\"test\\\" (\\\"index\\\") VALUES (1)\",\"INSERT INTO \\\"test\\\" (\\\"index\\\") VALUES (2)\",\"INSERT INTO \\\"test\\\" (\\\"index\\\") VALUES (3)\"]","payloadType":"json","repeat":"5","crontab":"","once":false,"onceDelay":0.1,"x":230,"y":280,"wires":[["61c9db35.d83aa4"]]},{"id":"61c9db35.d83aa4","type":"saphana","z":"d8a496b4.054658","mydb":"2660addc.ccd872","name":"saphana2","x":460,"y":280,"wires":[["8f24844d.59d218"]]},{"id":"8f24844d.59d218","type":"debug","z":"d8a496b4.054658","name":"","active":true,"tosidebar":true,"console":true,"tostatus":false,"complete":"payload","targetType":"msg","x":730,"y":280,"wires":[]}]
+[
+    {
+        "id": "24bb8283.e7b06e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ede67340.977cf",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b759cafc.516588",
+        "type": "saphanaconfig",
+        "z": "",
+        "host": "hxehost",
+        "port": "39015",
+        "user": "NODERED",
+        "password": "NodeRed2019!"
+    },
+    {
+        "id": "87bbb713.0e7828",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "4d35702f.c8945",
+        "type": "inject",
+        "z": "24bb8283.e7b06e",
+        "name": "",
+        "topic": "SQL",
+        "payload": "[\"SELECT * FROM \\\"test\\\"\",\"TRUNCATE TABLE \\\"test\\\"\"]",
+        "payloadType": "json",
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 200,
+        "wires": [
+            [
+                "7f6c42a5.78aa0c"
+            ]
+        ]
+    },
+    {
+        "id": "60252f35.33ac5",
+        "type": "debug",
+        "z": "24bb8283.e7b06e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 770,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "7f6c42a5.78aa0c",
+        "type": "saphana",
+        "z": "24bb8283.e7b06e",
+        "mydb": "b759cafc.516588",
+        "name": "saphana1",
+        "x": 480,
+        "y": 200,
+        "wires": [
+            [
+                "60252f35.33ac5"
+            ]
+        ]
+    },
+    {
+        "id": "b6478352.677b7",
+        "type": "inject",
+        "z": "ede67340.977cf",
+        "name": "",
+        "topic": "SQL",
+        "payload": "[\"CREATE COLUMN TABLE \\\"test\\\"(\\\"index\\\" INTEGER);\",\"INSERT INTO \\\"test\\\" (\\\"index\\\") VALUES (1)\",\"INSERT INTO \\\"test\\\" (\\\"index\\\") VALUES (2)\",\"INSERT INTO \\\"test\\\" (\\\"index\\\") VALUES (3)\",\"SELECT COUNT(*) as \\\"COUNT\\\" FROM \\\"test\\\"\"]",
+        "payloadType": "json",
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 230,
+        "y": 280,
+        "wires": [
+            [
+                "a4acacdb.69667"
+            ]
+        ]
+    },
+    {
+        "id": "a4acacdb.69667",
+        "type": "saphana",
+        "z": "ede67340.977cf",
+        "mydb": "b759cafc.516588",
+        "name": "saphana2",
+        "x": 460,
+        "y": 280,
+        "wires": [
+            [
+                "76a66ec9.23e9c"
+            ]
+        ]
+    },
+    {
+        "id": "76a66ec9.23e9c",
+        "type": "debug",
+        "z": "ede67340.977cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 730,
+        "y": 280,
+        "wires": []
+    }
+]
