@@ -17,7 +17,6 @@ module.exports = function(RED) {
         this.port = parseInt(n.port);
         this.user = n.user;
 		this.password = n.password;
-		this.dbname = n.db;
     }
 	
     RED.nodes.registerType("saphanaconfig", configNode);
@@ -54,13 +53,13 @@ module.exports = function(RED) {
 					password : node.hanaConfig.password
 				};
 				
-				node.warn("Connection Params : " + JSON.stringify(node.conn_params));
-				
 				conn.connect(node.conn_params, function(err, result) {
 					
 					node.connection = conn;
 					
 					if(err) {
+										
+						node.warn("Connection Params : " + JSON.stringify(node.conn_params));
 						node.warn(err);
 						
 						var errMess = "Connection failed for host " + node.hanaConfig.host + " with user " + node.hanaConfig.user;

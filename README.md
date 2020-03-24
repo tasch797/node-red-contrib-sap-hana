@@ -5,6 +5,8 @@ node-red-contrib-sap-hana
 Change Log
 -------
 
+v1.0.5 - Readme update : User has to be SCHEMA OWNER or to have HDI ADMIN user priviledges (not the users seen in XSA Environment *_RT, *_DT)
+
 v1.0.4 - Readme fix
 
 v1.0.2 - Feature added : Insert in msg.payload an Array of sql script commands (Example flows updated also)
@@ -27,6 +29,11 @@ Do not forget to edit `/etc/hosts` for default hxehost replacing X.Y or whole IP
 
 Usage
 -----
+
+Create a new SAP HANA user froM SAP Hana Studio and you'll get a schema with the same name created by the system.
+
+Use this new user and all the content will be saved in his schema as he's the owner.
+
 This package contains one node to run a sql command, call a procedure or a select statement for SAP HANA database using the office @sap/hana-client Node.JS driver.
 
 Example flow here [flows.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/flows.json)
