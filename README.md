@@ -30,7 +30,7 @@ Do not forget to edit `/etc/hosts` for default hxehost replacing X.Y or whole IP
 Usage
 -----
 
-Create a new SAP HANA user froM SAP Hana Studio and you'll get a schema with the same name created by the system.
+Create a new SAP HANA user from SAP Hana Studio and you'll get a schema with the same name created by the system.
 
 Use this new user and all the content will be saved in his schema as he's the owner.
 
