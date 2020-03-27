@@ -5,7 +5,9 @@ node-red-contrib-sap-hana
 Change Log
 -------
 
-v1.0.5 - Readme update : User has to be SCHEMA OWNER or to have HDI ADMIN user priviledges (not the users seen in XSA Environment *_RT, *_DT)
+v1.1.1 - Feature added : New node type `saphanatablemonitor` with configurable interval and query that may be used to monitor when #no-of-records in a table is changing
+
+v1.0.5 & v1.0.6- Readme update : User has to be SCHEMA OWNER or to have HDI ADMIN user priviledges (not the users seen in XSA Environment *_RT, *_DT)
 
 v1.0.4 - Readme fix
 
