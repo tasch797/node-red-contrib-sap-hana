@@ -4,6 +4,7 @@ node-red-contrib-sap-hana
 
 Change Log
 -------
+v1.2.2 - Bugfix : removed node type taht is not used
 
 v1.2.1 
 * Feature added : New node type `table_insert` for inserts receiving an array of objects (from http-in node)
