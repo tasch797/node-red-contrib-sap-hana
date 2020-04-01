@@ -5,6 +5,10 @@ node-red-contrib-sap-hana
 Change Log
 -------
 
+v1.2.1 
+* Feature added : New node type `table_insert` for inserts receiving an array of objects (from http-in node)
+* BIG CHANGE/INCOMPATIBILITY : Node type names have changed/simplified and may be found in different group `sap hana` now.
+	   
 v1.1.1 - Feature added : New node type `saphanatablemonitor` with configurable interval and query that may be used to monitor when #no-of-records in a table is changing
 
 v1.0.5 & v1.0.6- Readme update : User has to be SCHEMA OWNER or to have HDI ADMIN user priviledges (not the users seen in XSA Environment *_RT, *_DT)
