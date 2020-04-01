@@ -1,28 +1,35 @@
 [
     {
-        "id": "7e1df555.b7ca0c",
+        "id": "2c6a9d92.366c02",
         "type": "tab",
         "label": "Flow 2",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "53201359.ed519c",
+        "id": "22b27766.335768",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7235959f.47fd0c",
         "type": "tab",
         "label": "Flow 1",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "5a46b365.5bcd5c",
+        "id": "18000c91.f78c53",
         "type": "tab",
         "label": "Flow 2",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "b759cafc.516588",
-        "type": "saphanaconfig",
+        "id": "7590363f.d5a418",
+        "type": "sap_hana_config",
         "z": "",
         "host": "hxehost",
         "port": "39015",
@@ -30,105 +37,9 @@
         "password": "NodeRed2019!"
     },
     {
-        "id": "1cb7a62c.854dba",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-light",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#0094ce",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey"
-            }
-        },
-        "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "76030662.6e5d98",
+        "id": "d7b703f3.c91e",
         "type": "inject",
-        "z": "53201359.ed519c",
+        "z": "7235959f.47fd0c",
         "name": "",
         "topic": "SQL",
         "payload": "[\"SELECT * FROM \\\"test\\\"\",\"TRUNCATE TABLE \\\"test\\\"\"]",
@@ -141,14 +52,14 @@
         "y": 200,
         "wires": [
             [
-                "9beaa14f.378fd"
+                "4f68cbee.cd0314"
             ]
         ]
     },
     {
-        "id": "4a800441.1ea28c",
+        "id": "6fd1a1c7.b386f",
         "type": "debug",
-        "z": "53201359.ed519c",
+        "z": "7235959f.47fd0c",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -161,23 +72,23 @@
         "wires": []
     },
     {
-        "id": "9beaa14f.378fd",
-        "type": "saphana",
-        "z": "53201359.ed519c",
-        "mydb": "b759cafc.516588",
-        "name": "saphana1",
+        "id": "4f68cbee.cd0314",
+        "type": "run_query",
+        "z": "7235959f.47fd0c",
+        "mydb": "7590363f.d5a418",
+        "name": "run_query1",
         "x": 480,
         "y": 200,
         "wires": [
             [
-                "4a800441.1ea28c"
+                "6fd1a1c7.b386f"
             ]
         ]
     },
     {
-        "id": "9719928d.4fa49",
+        "id": "b9aba332.6c07",
         "type": "inject",
-        "z": "5a46b365.5bcd5c",
+        "z": "18000c91.f78c53",
         "name": "",
         "topic": "SQL",
         "payload": "[\"CREATE COLUMN TABLE \\\"test\\\"(\\\"index\\\" INTEGER);\",\"INSERT INTO \\\"test\\\" (\\\"index\\\") VALUES (1)\",\"INSERT INTO \\\"test\\\" (\\\"index\\\") VALUES (2)\",\"INSERT INTO \\\"test\\\" (\\\"index\\\") VALUES (3)\",\"SELECT COUNT(*) as \\\"COUNT\\\" FROM \\\"test\\\"\"]",
@@ -190,28 +101,28 @@
         "y": 280,
         "wires": [
             [
-                "30fc4278.edf37e"
+                "2467afa6.2510b"
             ]
         ]
     },
     {
-        "id": "30fc4278.edf37e",
-        "type": "saphana",
-        "z": "5a46b365.5bcd5c",
-        "mydb": "b759cafc.516588",
-        "name": "saphana2",
+        "id": "2467afa6.2510b",
+        "type": "run_query",
+        "z": "18000c91.f78c53",
+        "mydb": "7590363f.d5a418",
+        "name": "run_query2",
         "x": 460,
         "y": 280,
         "wires": [
             [
-                "3e642133.c4e04e"
+                "e0464cfb.33d6b"
             ]
         ]
     },
     {
-        "id": "3e642133.c4e04e",
+        "id": "e0464cfb.33d6b",
         "type": "debug",
-        "z": "5a46b365.5bcd5c",
+        "z": "18000c91.f78c53",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -224,25 +135,25 @@
         "wires": []
     },
     {
-        "id": "ec92313b.58d1c",
-        "type": "saphanatablemonitor",
-        "z": "7e1df555.b7ca0c",
-        "mydb": "b759cafc.516588",
-        "name": "saphanatablemonitor1",
+        "id": "3bb6a7ff.f29668",
+        "type": "table_monitor",
+        "z": "22b27766.335768",
+        "mydb": "7590363f.d5a418",
+        "name": "tablemonitor1",
         "query": "SELECT COUNT(*) AS \"count\" FROM \"test\"",
         "interval": "1",
         "x": 220,
         "y": 260,
         "wires": [
             [
-                "4d378281.87ba3c"
+                "8aa906a3.285798"
             ]
         ]
     },
     {
-        "id": "4d378281.87ba3c",
+        "id": "8aa906a3.285798",
         "type": "debug",
-        "z": "7e1df555.b7ca0c",
+        "z": "22b27766.335768",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -251,6 +162,50 @@
         "complete": "false",
         "x": 560,
         "y": 260,
+        "wires": []
+    },
+    {
+        "id": "cd0d9621.d21448",
+        "type": "http in",
+        "z": "2c6a9d92.366c02",
+        "name": "insert_http1",
+        "url": "/insert",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 200,
+        "wires": [
+            [
+                "c69c9432.4e67a8"
+            ]
+        ]
+    },
+    {
+        "id": "c69c9432.4e67a8",
+        "type": "table_insert",
+        "z": "2c6a9d92.366c02",
+        "mydb": "7590363f.d5a418",
+        "name": "tableinsert1",
+        "table": "test",
+        "columns": "index",
+        "x": 450,
+        "y": 200,
+        "wires": [
+            [
+                "feb43b56.4d1368"
+            ]
+        ]
+    },
+    {
+        "id": "feb43b56.4d1368",
+        "type": "http response",
+        "z": "2c6a9d92.366c02",
+        "name": "responseInsert1",
+        "statusCode": "",
+        "headers": {},
+        "x": 780,
+        "y": 200,
         "wires": []
     }
 ]

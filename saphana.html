@@ -1,4 +1,4 @@
-<script type="text/x-red" data-template-name="saphanaconfig">
+<script type="text/x-red" data-template-name="sap_hana_config">
     <div class="form-row">
         <label for="node-config-input-host"><i class="fa fa-globe"></i> Host</label>
         <input type="text" id="node-config-input-host" placeholder="Database Server Name">
@@ -17,7 +17,7 @@
     </div>
 </script>
 <script type="text/javascript">
-    RED.nodes.registerType('saphanaconfig',{
+    RED.nodes.registerType('sap_hana_config',{
         category: 'config',
         defaults: {
             host: {value:"hxehost",required:true},
@@ -29,11 +29,11 @@
             if (this.name)
                 return this.name;
             else
-                return "saphana";
+                return "sap_hana_config";
         }
     });
 </script>
-<script type="text/x-red" data-template-name="saphana">
+<script type="text/x-red" data-template-name="runquery">
     <div class="form-row">
         <label for="node-input-mydb"><i class="fa fa-database"></i> Database</label>
         <input type="text" id="node-input-mydb">
@@ -44,26 +44,26 @@
     </div>
 </script>
 <script type="text/javascript">
-    RED.nodes.registerType('saphana',{
-        category: 'storage-input',
+    RED.nodes.registerType('run_query',{
+        category: 'sap_hana',
         color:"#e97b00",
         defaults: {
-            mydb: {type:"saphanaconfig", required:true},
-            name: {value:"saphana1", required:true}
+            mydb: {type:"sap_hana_config", required:true},
+            name: {value:"runquery1", required:true}
         },
         inputs:1,
         outputs:1,
         icon: "db.png",
         label: function() {
             var levelNode = RED.nodes.node(this.mydb);
-            return this.name||(levelNode?levelNode.label():"saphana");
+            return this.name||(levelNode?levelNode.label():"run_query");
         },
             labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
     });
 </script>
-<script type="text/x-red" data-template-name="saphanatablemonitor">
+<script type="text/x-red" data-template-name="table_monitor">
     <div class="form-row">
         <label for="node-input-mydb"><i class="fa fa-database"></i> Database</label>
         <input type="text" id="node-input-mydb">
@@ -73,21 +73,21 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Query</label>
+        <label for="node-input-query"><i class="fa fa-tag"></i> Query</label>
         <input type="text" id="node-input-query" placeholder="Query">
     </div>	
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Interval</label>
+        <label for="node-input-interval"><i class="fa fa-tag"></i> Interval</label>
         <input type="text" id="node-input-interval" placeholder="in seconds">
     </div>	
 </script>
 <script type="text/javascript">
-    RED.nodes.registerType('saphanatablemonitor',{
-        category: 'storage-input',
+    RED.nodes.registerType('table_monitor',{
+        category: 'sap_hana',
         color:"#e97b00",
         defaults: {
-            mydb: {type:"saphanaconfig", required:true},
-            name: {value:"saphanatablemonitor1", required:true},
+            mydb: {type:"sap_hana_config", required:true},
+            name: {value:"tablemonitor1", required:true},
 			query: {value:"SELECT COUNT(*) FROM DUMMY", required:true},
 			interval : {value:"1", required:true}
         },
@@ -96,7 +96,47 @@
         icon: "db.png",
         label: function() {
             var levelNode = RED.nodes.node(this.mydb);
-            return this.name || (levelNode ? levelNode.label() : "saphanatablemonitor");
+            return this.name || (levelNode ? levelNode.label() : "table_monitor");
+        },
+            labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+<script type="text/x-red" data-template-name="table_insert">
+    <div class="form-row">
+        <label for="node-input-mydb"><i class="fa fa-database"></i> Database</label>
+        <input type="text" id="node-input-mydb">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-table"><i class="fa fa-tag"></i> Table</label>
+        <input type="text" id="node-input-table" placeholder="Table">
+    </div>	
+    <div class="form-row">
+        <label for="node-input-columns"><i class="fa fa-tag"></i> Columns</label>
+        <input type="text" id="node-input-columns" placeholder="Column1,Column2">
+    </div>	
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('table_insert',{
+        category: 'sap_hana',
+        color:"#e97b00",
+        defaults: {
+            mydb: {type:"sap_hana_config", required:true},
+            name: {value:"tableinsert1", required:true},
+			table: {value:"table1", required:true},
+			columns: {value:"column1", required:true}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "db.png",
+        label: function() {
+            var levelNode = RED.nodes.node(this.mydb-insert);
+            return this.name || (levelNode ? levelNode.label() : "table_insert");
         },
             labelStyle: function() {
             return this.name?"node_label_italic":"";
