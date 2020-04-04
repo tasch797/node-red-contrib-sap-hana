@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-sap-hana",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Node-RED node to access SAP HANA database",
   "dependencies": {
     "@sap/hana-client": "latest"
@@ -18,7 +18,10 @@
   ],
   "node-red": {
     "nodes": {
-      "saphana": "saphana.js"
+      "sap_hana_config": "sap_hana_config.js",
+	  "run_query": "run_query.js",
+	  "table_monitor": "table_monitor.js",
+	  "table_insert": "table_insert.js"
     }
   },
   "author": {
