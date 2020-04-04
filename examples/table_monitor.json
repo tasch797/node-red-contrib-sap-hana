@@ -1,0 +1,48 @@
+[
+    {
+        "id": "1910ae10.b46a42",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6e5bcd8b.b76ad4",
+        "type": "table_monitor",
+        "z": "1910ae10.b46a42",
+        "mydb": "bfe878eb.b4ca68",
+        "name": "tablemonitor1",
+        "query": "SELECT COUNT(*) AS \"count\" FROM \"test\"",
+        "interval": "1",
+        "x": 220,
+        "y": 260,
+        "wires": [
+            [
+                "cc571e69.045cb"
+            ]
+        ]
+    },
+    {
+        "id": "cc571e69.045cb",
+        "type": "debug",
+        "z": "1910ae10.b46a42",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 560,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "bfe878eb.b4ca68",
+        "type": "sap_hana_config",
+        "z": "",
+        "host": "hxehost",
+        "port": "39015",
+        "user": "NODERED",
+        "password": "NodeRed2019!"
+    }
+]
