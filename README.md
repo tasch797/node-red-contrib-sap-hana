@@ -23,6 +23,7 @@ v1.0.2 - Feature added : Insert in msg.payload an Array of sql script commands (
 
 v1.0.1 - INSERT, UPDATE, DELETE and other SQL script sql commands work
 
+
 Install
 -------
 
@@ -44,7 +45,10 @@ Usage
 This package contains one node to run a sql command, call a procedure or a select statement for SAP HANA database using the office @sap/hana-client Node.JS driver.
 
 Example flows here :
-* [flows.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/flows.json)
+* [sap_hana_config.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/exxamples/sap_hana_config.json)
+* [run_query.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/examples/run_query.json)
+* [table_monitor.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/examples/table_monitor.json)
+* [table_insert.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/examples/table_insert.json)
 
 
 1. `sap_hana_config` node
@@ -135,6 +139,7 @@ Other Informations
 Currently, only SAP HANA Express has been tested.
 
 Please let me know if you have any issue.
+
 
 Authors
 -------

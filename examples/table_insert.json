@@ -1,0 +1,27 @@
+[
+    {
+        "id": "9cc4098e.20cd28",
+        "type": "table_insert",
+        "z": "213770b1.17477",
+        "mydb": "32a17b6e.7b8304",
+        "name": "tableinsert1",
+        "table": "test",
+        "columns": "index",
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "e85649d2.f5ce08"
+            ]
+        ]
+    },
+    {
+        "id": "32a17b6e.7b8304",
+        "type": "sap_hana_config",
+        "z": "",
+        "host": "hxehost",
+        "port": "39015",
+        "user": "NODERED",
+        "password": "NodeRed2019!"
+    }
+]

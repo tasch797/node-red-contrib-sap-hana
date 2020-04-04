@@ -1,0 +1,67 @@
+[
+    {
+        "id": "d8292d1d.66deb",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b0a3dba1.247d38",
+        "type": "inject",
+        "z": "d8292d1d.66deb",
+        "name": "",
+        "topic": "SQL",
+        "payload": "[\"SELECT * FROM \\\"test\\\"\",\"TRUNCATE TABLE \\\"test\\\"\"]",
+        "payloadType": "json",
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 200,
+        "wires": [
+            [
+                "edb09fc9.936ca"
+            ]
+        ]
+    },
+    {
+        "id": "b9d3ce58.e6a4f",
+        "type": "debug",
+        "z": "d8292d1d.66deb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 770,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "edb09fc9.936ca",
+        "type": "run_query",
+        "z": "d8292d1d.66deb",
+        "mydb": "25206372.9b10ec",
+        "name": "run_query1",
+        "x": 480,
+        "y": 200,
+        "wires": [
+            [
+                "b9d3ce58.e6a4f"
+            ]
+        ]
+    },
+    {
+        "id": "25206372.9b10ec",
+        "type": "sap_hana_config",
+        "z": "",
+        "host": "hxehost",
+        "port": "39015",
+        "user": "NODERED",
+        "password": "NodeRed2019!"
+    }
+]

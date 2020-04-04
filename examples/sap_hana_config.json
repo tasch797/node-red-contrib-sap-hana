@@ -1,0 +1,11 @@
+[
+    {
+        "id": "7590363f.d5a418",
+        "type": "sap_hana_config",
+        "z": "",
+        "host": "hxehost",
+        "port": "39015",
+        "user": "NODERED",
+        "password": "NodeRed2019!"
+    }
+]
