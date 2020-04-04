@@ -45,13 +45,13 @@ Usage
 This package contains one node to run a sql command, call a procedure or a select statement for SAP HANA database using the office @sap/hana-client Node.JS driver.
 
 Example flows here :
-* [sap_hana_config.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/exxamples/sap_hana_config.json)
+* [sap_hana_config.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/examples/sap_hana_config.json)
 * [run_query.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/examples/run_query.json)
 * [table_monitor.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/examples/table_monitor.json)
 * [table_insert.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/examples/table_insert.json)
 
 
-1. `sap_hana_config` node
+## 1. `sap_hana_config` node
 
 Create a new SAP HANA user from SAP Hana Studio and you'll get a schema with the same name created by the system.
 
@@ -64,7 +64,7 @@ Node config parameters :
 * Password for the user name above
 
 
-2. `run_query` node
+## 2. `run_query` node
 
 To run a command  or a query input to saphana node the folowing message :
 
@@ -105,7 +105,7 @@ Error response example :
 }
 ```
 
-3. `table_monitor` node
+## 3. `table_monitor` node
 
 Node config parameters :
 * query to run at each iteration with setInterval function
@@ -123,7 +123,7 @@ At each interval Error response example :
 }
 ```
 
-4. `table_insert` node
+## 4. `table_insert` node
 
 
 For input : forward from an `http-in` node or from another node type an array of objects
