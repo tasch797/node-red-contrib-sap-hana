@@ -4,7 +4,10 @@ node-red-contrib-sap-hana
 
 Change Log
 -------
-v1.2.2 - Bugfix : removed node type taht is not used
+
+v1.2.3 - Split the node in separate files & readme updates
+
+v1.2.2 - Bugfix : removed node type that is not used
 
 v1.2.1 
 * Feature added : New node type `table_insert` for inserts receiving an array of objects (from http-in node)
@@ -22,6 +25,7 @@ v1.0.1 - INSERT, UPDATE, DELETE and other SQL script sql commands work
 
 Install
 -------
+
 Install from [npm](http://npmjs.org) or install from Manage Pallete in Node-RED
 ```
 cd $HOME/.node-red/
@@ -37,40 +41,49 @@ Do not forget to edit `/etc/hosts` for default hxehost replacing X.Y or whole IP
 Usage
 -----
 
+This package contains one node to run a sql command, call a procedure or a select statement for SAP HANA database using the office @sap/hana-client Node.JS driver.
+
+Example flows here :
+* [flows.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/flows.json)
+
+
+1. `sap_hana_config` node
+
 Create a new SAP HANA user from SAP Hana Studio and you'll get a schema with the same name created by the system.
 
 Use this new user and all the content will be saved in his schema as he's the owner.
 
-This package contains one node to run a sql command, call a procedure or a select statement for SAP HANA database using the office @sap/hana-client Node.JS driver.
+Node config parameters :
+* Database host name
+* Database host port
+* User name to access the database
+* Password for the user name above
 
-Example flow here [flows.json](https://github.com/radu103/node-red-contrib-sap-hana/blob/master/flows.json)
 
-Query node usage:
------------------
-
-You will need to fill in the following fields:
-
--- Database host name and port.
-
--- User name to access the database.
-
--- Password for the user name above.
-
--- Schema name.
-
-Node usage:
-------------------
-
-The returned data will be stored in msg.payload and it will contains the @sap/hana-client response.  
+2. `run_query` node
 
 To run a command  or a query input to saphana node the folowing message :
+
 ```
 msg.topic = "SQL"; // or lower case 'sql'
 msg.payload = "SELECT * FROM DUMMY";
 return msg;
 ```
 
-As an OK response you'll receive on the `saphana` node (or error):
+Also it works with an array of queries
+
+```
+msg.topic = "SQL"; // or lower case 'sql'
+msg.payload = [
+	'SELECT * FROM DUMMY', 
+	'INDERT INTO "table_name" ("col1", "col2") VALUES (\'val1\', \'val2\')'
+];
+return msg;
+```
+
+The returned data will be stored in msg.payload and it will contain the @sap/hana-client response.  
+
+As an OK response you'll receive on the `run_query` response:
 ```
 {
 	topic : "RESULT_IN_PAYLOAD",
@@ -78,10 +91,52 @@ As an OK response you'll receive on the `saphana` node (or error):
 }
 ```
 
+Error response example :
+```
+{
+	topic : "ERROR",
+	payload : {
+	
+	};
+}
+```
+
+3. `table_monitor` node
+
+Node config parameters :
+* query to run at each iteration with setInterval function
+* interval delay time (in seconds)
+
+At each interval Error response example :
+```
+{
+	"topic":"RESPONSE_IN_PAYLOAD",
+	"payload":{
+		"lastCount":1,
+		"newCount":1,
+		"trigger":false
+	}
+}
+```
+
+4. `table_insert` node
+
+
+For input : forward from an `http-in` node or from another node type an array of objects
+
+Node config parameters :
+* Table Name
+* Columns (property names from the js objects found in array) to be used in the SQL INSERt query
+
+
+Other Informations
+-------
+
 Currently, only SAP HANA Express has been tested.
 
 Please let me know if you have any issue.
 
 Authors
 -------
+
 * Radu Simen - [radu103@hotmail.com](mailto:radu103@hotmail.com)

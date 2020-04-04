@@ -1,0 +1,30 @@
+<script type="text/x-red" data-template-name="run_query">
+    <div class="form-row">
+        <label for="node-input-mydb"><i class="fa fa-database"></i> Database</label>
+        <input type="text" id="node-input-mydb">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('run_query',{
+        category: 'sap_hana',
+        color:"#e97b00",
+        defaults: {
+            mydb: {type:"sap_hana_config", required:true},
+            name: {value:"runquery1", required:true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "db.png",
+        label: function() {
+            var levelNode = RED.nodes.node(this.mydb);
+            return this.name||(levelNode?levelNode.label():"run_query");
+        },
+            labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
