@@ -27,6 +27,8 @@ v1.0.1 - INSERT, UPDATE, DELETE and other SQL script sql commands work
 Install
 -------
 
+Configure SAP Node.Js repository : `npm set @sap:registry=https://npm.sap.com`
+
 Install from [npm](http://npmjs.org) or install from Manage Pallete in Node-RED
 ```
 cd $HOME/.node-red/
