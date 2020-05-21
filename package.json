@@ -3,7 +3,8 @@
   "version": "1.2.4",
   "description": "Node-RED node to access SAP HANA database",
   "dependencies": {
-    "@sap/hana-client": "latest"
+    "@sap/hana-client": "latest",
+    "async" : "latest"
   },
   "repository": {
     "type": "git",
