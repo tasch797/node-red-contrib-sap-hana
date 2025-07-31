@@ -19,8 +19,8 @@ module.exports = function(RED) {
 		
 		node.on("input", function(msg, send, done) {
 			
-			node.warn("Topic : " + msg.topic);
-			node.warn("Payload : " + JSON.stringify(msg.payload));
+			//node.warn("Topic : " + msg.topic);
+			//node.warn("Payload : " + JSON.stringify(msg.payload));
 			
 			if (msg.topic === 'SQL' || msg.topic === 'sql' ){
 				
@@ -37,6 +37,12 @@ module.exports = function(RED) {
 					password : node.hanaConfig.password
 				};
 				
+				node.status({
+					fill: "blue",
+					shape: "dot",
+					text: `Requesting`
+				});
+				
 				conn.connect(node.conn_params, function(err, result) {
 					
 					if(err) {
@@ -46,6 +52,12 @@ module.exports = function(RED) {
 						
 						var errMess = "Connection failed for host " + node.hanaConfig.host + " with user " + node.hanaConfig.user;
 						node.warn(errMess);
+						
+						node.status({
+							fill: "red",
+							shape: "dot",
+							text: "Connection failed for host " + node.hanaConfig.host + " with user " + node.hanaConfig.user
+						});
 						
 						var errMsg = {
 							"topic" : "ERROR",
@@ -62,7 +74,7 @@ module.exports = function(RED) {
 						for(var i = 0; i < msg.payload.length; i++){
 							
 							let sql = msg.payload[i];
-							node.warn("SQL loop : " + sql);
+							//node.warn("SQL loop : " + sql);
 							
 							var fn = function(callback){
 								conn.exec(sql, [], function (err2, result2) {
@@ -84,7 +96,7 @@ module.exports = function(RED) {
 							fnExec,
 							function(err, results) {
 								
-								node.warn("Async results : " + JSON.stringify(results) );
+								//node.warn("Async results : " + JSON.stringify(results) );
 								
 								var msg = {
 									"topic" : "RESULTS_IN_PAYLOAD",
@@ -93,6 +105,12 @@ module.exports = function(RED) {
 								
 								send(msg);
 								done();
+								
+								node.status({
+									fill: "green",
+									shape: "dot",
+									text: `Done`
+								});
 								
 								conn.disconnect();								
 							}
